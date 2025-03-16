@@ -19,20 +19,6 @@ function App() {
   return (
     <>
       <div>
-        <div>
-          {loading ? (
-            <div>Loading todos...</div>
-          ) : error ? (
-            <div>Error: {errorMsg}</div>
-          ) : (
-            items.map((todo: Todo) => {
-              return (
-                <div>{todo.title}</div>
-              )
-            })
-          )
-          }
-        </div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -52,6 +38,20 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <div>
+        {loading ? (
+          <div>Loading todos...</div>
+        ) : error ? (
+          <div>Error: {errorMsg}</div>
+        ) : (
+          items.map((todo: Todo) => {
+            return (
+              <div>{todo.title}</div>
+            )
+          })
+        )
+        }
+      </div>
     </>
   )
 }

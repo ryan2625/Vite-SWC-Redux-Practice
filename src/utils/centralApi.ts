@@ -13,7 +13,6 @@ export const standardFetch = async (path: string) => {
   } catch (e) {
     console.log(e)
   }
-
 }
 
 export const centralEndpoint = "https://jsonplaceholder.typicode.com"
