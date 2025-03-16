@@ -1,18 +1,38 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import type { RootState } from './store/store'
-import { useDispatch, useSelector } from 'react-redux'
-import { decrement, increment, changeValueByAmount } from './store/slices/counterSlice'
+import { useAppDispatch, type RootState } from './store/store'
+import { useSelector } from 'react-redux'
+import { increment } from './store/slices/counterSlice'
+import { fetchTodos, Todo } from './store/slices/todosSlice'
 
 function App() {
   const count = useSelector((state: RootState) => state.counter.value)
-  const dispatch = useDispatch()
+  const { items, loading, error, errorMsg } = useSelector((state: RootState) => state.todo)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(fetchTodos())
+  }, [dispatch])
 
   return (
     <>
       <div>
+        <div>
+          {loading ? (
+            <div>Loading todos...</div>
+          ) : error ? (
+            <div>Error: {errorMsg}</div>
+          ) : (
+            items.map((todo: Todo) => {
+              return (
+                <div>{todo.title}</div>
+              )
+            })
+          )
+          }
+        </div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
