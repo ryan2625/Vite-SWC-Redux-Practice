@@ -4,8 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { useAppDispatch, type RootState } from './store/store'
 import { useSelector } from 'react-redux'
-import { increment } from './store/slices/counterSlice'
-import { fetchTodos, Todo } from './store/slices/todosSlice'
+import { increment } from './store/slices/sliceExports'
+import { Todo, fetchTodos } from './store/slices/todosSlice'
 
 function App() {
   const count = useSelector((state: RootState) => state.counter.value)
